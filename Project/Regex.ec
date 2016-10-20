@@ -25,7 +25,7 @@ public import "ecere"
 public class Regex : struct
 {
 public:
-   property String regex
+   property String regex		//正则表达式，字符串属性
    {
       set
       {
@@ -45,7 +45,7 @@ public:
       get { return regex; }
    }
 
-   property bool caseInsensitive
+   property bool caseInsensitive		//不区分大小写设置，布尔属性
    {
       set
       {
@@ -59,7 +59,7 @@ public:
       get { return (compileFlags & REG_ICASE) != 0; }
    }
 
-   property bool newLineException
+   property bool newLineException		//新行例外，布尔属性
    {
       set
       {
@@ -74,7 +74,7 @@ public:
       get { return (compileFlags & REG_NEWLINE) != 0; }
    }
 
-   property bool lineStartException
+   property bool lineStartException		//行开始例外，布尔属性
    {
       set
       {
@@ -84,7 +84,7 @@ public:
       get { return (executeFlags & REG_NOTBOL) != 0; }
    }
 
-   property bool lineEndException
+   property bool lineEndException		//行结尾例外，布尔属性
    {
       set
       {
@@ -94,7 +94,7 @@ public:
       get { return (executeFlags & REG_NOTEOL) != 0; }
    }
 
-   property bool extendedSyntax
+   property bool extendedSyntax			//扩展语法
    {
       set
       {
@@ -108,9 +108,9 @@ public:
       get { return (compileFlags & REG_EXTENDED) != 0; }
    }
 
-   property bool valid { get { return valid; } }
+   property bool valid { get { return valid; } }		//有效，布尔属性
 
-   property int maxMatchCount
+   property int maxMatchCount		//最大匹配计数，整型
    {
       set
       {
@@ -124,9 +124,10 @@ public:
       get { return maxMatchCount; }
    }
 
-   property int matchCount { get { return matchCount; } }
+   property int matchCount { get { return matchCount; } }		//匹配计数，整型
 
-   char * Match(const String string)
+   //char * Match(const String string)
+   char * Match(String string)		//匹配，字符型(此处左侧 "String" 前有一个 "Const" 被为去除，如果有何异常，请自行添加)
    {
       if(valid)
       {
@@ -153,31 +154,31 @@ public:
       return null;
    }
 
-   int GetMatchStartOffset(int matchPos)
+   int GetMatchStartOffset(int matchPos)		//获取匹配头部偏移量，整型
    {
       return matches[matchPos].rm_so;
    }
 
-   int GetMatchEndOffset(int matchPos)
+   int GetMatchEndOffset(int matchPos)			//获取匹配尾部偏移量，整型
    {
       return matches[matchPos].rm_eo;
    }
 
 private:
-   bool valid;
-   int compileFlags;
-   int executeFlags;
-   int matchCount;
-   int maxMatchCount;
-   regex_t compiledRegex;
-   regmatch_t * matches;
+   bool valid;				//有效
+   int compileFlags;		//编译标志
+   int executeFlags;		//执行标志
+   int matchCount;			//匹配计数
+   int maxMatchCount;		//最大匹配计数
+   regex_t compiledRegex;	//编译正则表达式
+   regmatch_t * matches;	//匹配
 
    ~Regex()
    {
       Free();
    }
 
-   void Free()
+   void Free()				//释放
    {
       delete matches;
       delete regex;
@@ -185,7 +186,7 @@ private:
       valid = false;
    }
 
-   void Compile()
+   void Compile()			//匹配
    {
       int result;
       regfree(&compiledRegex);
