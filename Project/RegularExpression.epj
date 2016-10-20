@@ -1,0 +1,54 @@
+{
+   "Version" : 0.2,
+   "ModuleName" : "RegularExpression",
+   "Options" : {
+      "Warnings" : "All",
+      "TargetType" : "Executable",
+      "TargetFileName" : "RegularExpression",
+      "Libraries" : [
+         "ecere"
+      ]
+   },
+   "Configurations" : [
+      {
+         "Name" : "Debug",
+         "Options" : {
+            "Debug" : true,
+            "Optimization" : "None",
+            "PreprocessorDefinitions" : [
+               "_DEBUG"
+            ],
+            "LibraryDirs" : [
+               "language"
+            ],
+            "FastMath" : false
+         }
+      },
+      {
+         "Name" : "Release",
+         "Options" : {
+            "Debug" : false,
+            "Optimization" : "Speed",
+            "FastMath" : true
+         }
+      }
+   ],
+   "Files" : [
+      {
+         "FileName" : "formMainWin.ec",
+         "Configurations" : [
+            {
+               "Name" : "Debug",
+               "Options" : {
+                  "ExcludeFromBuild" : false
+               }
+            }
+         ]
+      },
+      "C:/ProgramData/Ecere SDK/extras/Regex.ec"
+   ],
+   "ResourcesPath" : "",
+   "Resources" : [
+
+   ]
+}
