@@ -1,15 +1,14 @@
 import "ecere"
 import "Regex"
-namespace sys;
 class FormMainWin : Window
 {
-   caption = $"Regular Expression of eCere";
+   caption = $"Regular Expression Tester of eCere";
    background = formColor;
    borderStyle = sizable;
    hasMaximize = true;
    hasMinimize = true;
    hasClose = true;
-   clientSize = { 576, 392 };
+   clientSize = { 640, 480 };
 
    EditBox editRegex { this, caption = $"editBox1", size = { 486, 19 }, position = { 24, 40 } };
    EditBox editRegOut { this, caption = $"editBox2", size = { 486, 75 }, position = { 24, 96 }, readOnly = true, true };
@@ -26,6 +25,7 @@ class FormMainWin : Window
          char* result;
          Regex regex { editRegex.contents, true };
          if((result = regex.Match(editText.contents)))editRegOut.contents = result;
+         //delete result;
          return true;
       }
    };
